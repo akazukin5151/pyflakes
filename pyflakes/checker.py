@@ -1496,15 +1496,6 @@ class Checker(object):
         if isinstance(annotation, ast.Str):
             # Ignore string annotations
             pass
-            # Defer handling forward annotation.
-            #self.deferFunction(functools.partial(
-            #    self.handleStringAnnotation,
-            #    annotation.s,
-            #    node,
-            #    annotation.lineno,
-            #    annotation.col_offset,
-            #    messages.ForwardAnnotationSyntaxError,
-            #))
         elif self.annotationsFutureEnabled:
             fn = in_annotation(Checker.handleNode)
             self.deferFunction(lambda: fn(self, annotation, node))

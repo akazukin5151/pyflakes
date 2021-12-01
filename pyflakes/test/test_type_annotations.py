@@ -222,16 +222,8 @@ class TestTypeAnnotations(TestCase):
         bar: Bar
         ''')
         self.flakes('''
-        from foo import Bar
-        bar: 'Bar'
-        ''')
-        self.flakes('''
         import foo
         bar: foo.Bar
-        ''')
-        self.flakes('''
-        import foo
-        bar: 'foo.Bar'
         ''')
         self.flakes('''
         from foo import Bar
@@ -239,22 +231,8 @@ class TestTypeAnnotations(TestCase):
         ''')
         self.flakes('''
         from foo import Bar
-        def f(bar: 'Bar'): pass
-        ''')
-        self.flakes('''
-        from foo import Bar
         def f(bar) -> Bar: return bar
         ''')
-        self.flakes('''
-        from foo import Bar
-        def f(bar) -> 'Bar': return bar
-        ''')
-        self.flakes('''
-        bar: 'Bar'
-        ''', m.UndefinedName)
-        self.flakes('''
-        bar: 'foo.Bar'
-        ''', m.UndefinedName)
         self.flakes('''
         from foo import Bar
         bar: str
@@ -288,17 +266,8 @@ class TestTypeAnnotations(TestCase):
         def g(t: 'T'): pass
         ''')
         self.flakes('''
-        a: 'A B'
-        ''', m.ForwardAnnotationSyntaxError)
-        self.flakes('''
-        a: 'A; B'
-        ''', m.ForwardAnnotationSyntaxError)
-        self.flakes('''
         a: '1 + 2'
         ''')
-        self.flakes('''
-        a: 'a: "A"'
-        ''', m.ForwardAnnotationSyntaxError)
 
     @skipIf(version_info < (3, 6), 'new in Python 3.6')
     def test_annotating_an_import(self):
@@ -651,17 +620,6 @@ class TestTypeAnnotations(TestCase):
 
         def f(x: Literal['some string', 'foo bar']) -> None:
             return None
-        """)
-
-    @skipIf(version_info < (3,), 'new in Python 3')
-    def test_deferred_twice_annotation(self):
-        self.flakes("""
-            from queue import Queue
-            from typing import Optional
-
-
-            def f() -> "Optional['Queue[str]']":
-                return None
         """)
 
     @skipIf(version_info < (3, 7), 'new in Python 3.7')
