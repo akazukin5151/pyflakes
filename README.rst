@@ -10,7 +10,7 @@ This is done because, in my opinion, pyflakes is not a static type checker. It i
 
 Don't get me wrong, I love static types and hate dynamic typing. This is done not to loosen restrictions on static types, but enable more Haskell-like types like ``'m a -> (a -> m b) -> m b'``. Mypy is extremely disappointing, especially when it comes to the libraries that most Python users use -- `pandas is the second most used library <https://www.jetbrains.com/lp/python-developers-survey-2020/>`_, at least for data analysis, which is the second most common usage of Python.
 
-It is anti-competitive for Python tooling to lock programmers into an inferior style of type hinting. Type hints were gradually introduced, with the guarantee that Python will always ignore hints, to let the community experimentate with different style of type hints. Even if the current style has indeed been accepted by the community, as long as Python ignores type hints, I will ignore pyflakes.
+It is anti-competitive for Python tooling to lock programmers into an inferior style of type hinting. Type hints were gradually introduced, with the guarantee that Python will always ignore hints, to let the community experimentate with different style of type hints. It raises the barriers of entry for alternative type checkers that could support an alternate type hinting style. Even if the current style has indeed been accepted by the community, as long as Python ignores type hints, I will ignore pyflakes.
 
 ========
 Pyflakes
