@@ -1,4 +1,16 @@
 ========
+Fork
+========
+
+This fork removes all checks on string annotations (``a: 'bar'``, ``def f(a: 'foo')``), which removes all syntax checks (any string is allowed) and undefined names. Therefore it is no longer needed to import modules or functions only for annotations.
+
+This fine because Python does not care how string annotations are used, and will never raise an error.
+
+This is done because, in my opinion, pyflakes is not a static type checker. It is a linter, and therefore it should not care how the annotations are being used. That is the job for a static type checker.
+
+Don't get me wrong, I love static types and hate dynamic typing. This is done not to loosen restrictions on static types, but enable more Haskell-like types like ``'m a -> (a -> m b) -> m b'``. Mypy is extremely disappointing, especially when it comes to the libraries that most Python users use -- `pandas is the second most used library <https://www.jetbrains.com/lp/python-developers-survey-2020/>`_, at least for data analysis, which is the second most common usage of Python.
+
+========
 Pyflakes
 ========
 
